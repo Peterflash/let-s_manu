@@ -1,0 +1,2 @@
+# Données internes (réglages, demandes de devis, mot de passe) : jamais accessibles par le web.
+Require all denied

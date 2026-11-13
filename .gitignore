@@ -1,0 +1,15 @@
+# Données vivantes du site : jamais versionnées
+# (compte admin, réglages, demandes de devis, journaux d'e-mails, statistiques, photos envoyées)
+data/*
+!data/.htaccess
+uploads/realisations/*
+uploads/site/*
+!uploads/realisations/.gitkeep
+!uploads/site/.gitkeep
+
+# Environnement local
+.claude/
+assets/_test/
+*.log
+.DS_Store
+Thumbs.db

@@ -1,0 +1,11 @@
+# Fichiers inutiles dans l'image
+.git
+.claude
+docs
+letsmanu-logos
+*.md
+assets/_test
+data/*
+!data/.htaccess
+uploads/realisations/*
+uploads/site/*

@@ -1,0 +1,5 @@
+# Aucun script ne doit s'exécuter depuis le dossier des fichiers envoyés.
+<FilesMatch "\.(php\d?|phtml|phar|pl|py|cgi|sh)$">
+    Require all denied
+</FilesMatch>
+Options -ExecCGI -Indexes

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360" fill="none" stroke-linecap="round" stroke-linejoin="round">
+<defs><pattern id="g" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0v24" stroke="#9FB3C6" stroke-opacity=".09"/></pattern></defs>
+<rect width="480" height="360" fill="#10212F"/><rect width="480" height="360" fill="url(#g)"/>
+<!-- Tôle à traiter : partie haute rouillée, partie basse décapée -->
+<rect x="330" y="44" width="38" height="272" stroke="#D6E1EB" stroke-width="2.5"/>
+<path d="M332 72l34-20M332 90l34-20M332 108l34-20M332 126l34-20M332 144l34-20M332 162l34-20M332 180l34-20" stroke="#FD6909" stroke-width="2" opacity=".75"/>
+<path d="M322 184h54" stroke="#9FB3C6" stroke-width="1" stroke-dasharray="6 4"/>
+<!-- Buse et tuyau -->
+<path d="M92 196C40 196 52 300 16 322" stroke="#9FB3C6" stroke-width="13"/>
+<path d="M92 182l80-8 16 12v20l-16 12-80-8z" stroke="#D6E1EB" stroke-width="2.5" fill="#10212F"/>
+<path d="M112 180v32M128 178v36" stroke="#D6E1EB" stroke-width="2"/>
+<!-- Jet d'abrasif -->
+<path d="M192 190l132-56M192 196l132-4M192 202l132 48M192 206l132 92" stroke="#9FB3C6" stroke-width="1.25" stroke-dasharray="3 9"/>
+<g fill="#FD6909">
+<circle cx="226" cy="188" r="2.5"/><circle cx="252" cy="176" r="2"/><circle cx="262" cy="204" r="2.5"/><circle cx="288" cy="190" r="2"/>
+<circle cx="300" cy="226" r="2.500"/><circle cx="284" cy="238" r="2"/><circle cx="310" cy="260" r="2.500"/><circle cx="240" cy="212" r="2"/>
+<circle cx="306" cy="158" r="2"/><circle cx="314" cy="200" r="2.500"/><circle cx="298" cy="274" r="2"/><circle cx="270" cy="226" r="2"/>
+</g>
+<!-- Degré de soin -->
+<text x="382" y="256" font-family="Arial, sans-serif" font-size="15" fill="#9FB3C6">Sa 2½</text>
+<path d="M378 262h56" stroke="#9FB3C6" stroke-width="1"/>
+</svg>

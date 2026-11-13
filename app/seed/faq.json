@@ -1,0 +1,26 @@
+[
+  {
+    "q": {"fr": "Intervenez-vous hors d'Abidjan ?", "en": "Do you work outside Abidjan?"},
+    "r": {"fr": "Oui. Nous intervenons partout en Côte d'Ivoire, y compris sur les sites miniers et industriels de l'intérieur du pays. Les frais de déplacement sont indiqués dans le devis.", "en": "Yes. We work anywhere in Côte d'Ivoire, including mining and industrial sites up-country. Travel costs are shown in the quote."}
+  },
+  {
+    "q": {"fr": "Le devis est-il gratuit ?", "en": "Is the quote free?"},
+    "r": {"fr": "Oui, le devis est gratuit et sans engagement. Pour le préparer, nous avons besoin d'une description du besoin et, si possible, de photos.", "en": "Yes, the quote is free and without obligation. To prepare it, we need a description of the need and, if possible, photos."}
+  },
+  {
+    "q": {"fr": "Quels sont vos délais d'intervention ?", "en": "How quickly can you come?"},
+    "r": {"fr": "À Abidjan, nous pouvons intervenir sous 24 h pour une urgence. Pour les autres travaux, le délai est précisé dans le devis.", "en": "In Abidjan, we can be on site within 24 hours for an emergency. For other work, the lead time is stated in the quote."}
+  },
+  {
+    "q": {"fr": "Comment demander un devis ?", "en": "How do I request a quote?"},
+    "r": {"fr": "Remplissez le formulaire de la page Contact, appelez-nous, ou envoyez une photo de la pièce ou du site sur WhatsApp.", "en": "Fill in the form on the Contact page, call us, or send a photo of the part or the site on WhatsApp."}
+  },
+  {
+    "q": {"fr": "Fournissez-vous les documents pour un référencement fournisseur ?", "en": "Do you provide documents for vendor registration?"},
+    "r": {"fr": "Oui. Le RCCM, les attestations fiscales et sociales et la plaquette de présentation sont disponibles sur demande.", "en": "Yes. Trade register extract, tax and social security certificates and the company brochure are available on request."}
+  },
+  {
+    "q": {"fr": "Travaillez-vous aussi pour les PME et les commerçants ?", "en": "Do you also work for small businesses?"},
+    "r": {"fr": "Oui. Nous construisons hangars, magasins, charpentes et ouvrages métalliques pour des entreprises de toute taille.", "en": "Yes. We build warehouses, shops, steel frames and metalwork for businesses of all sizes."}
+  }
+]

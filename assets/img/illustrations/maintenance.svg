@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360" fill="none" stroke-linecap="butt" stroke-linejoin="round">
+<defs><pattern id="g" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0v24" stroke="#9FB3C6" stroke-opacity=".09"/></pattern></defs>
+<rect width="480" height="360" fill="#10212F"/><rect width="480" height="360" fill="url(#g)"/>
+<!-- Grand pignon -->
+<circle cx="190" cy="190" r="84" stroke="#D6E1EB" stroke-width="16" stroke-dasharray="21.99 21.99"/>
+<circle cx="190" cy="190" r="76" fill="#10212F" stroke="#D6E1EB" stroke-width="2.5"/>
+<circle cx="190" cy="190" r="24" stroke="#D6E1EB" stroke-width="2.5"/>
+<path d="M184 166v-7h12v7" stroke="#D6E1EB" stroke-width="2.5"/>
+<g stroke="#9FB3C6" stroke-width="1.5">
+<circle cx="190" cy="140" r="10"/><circle cx="233.300" cy="165" r="10"/><circle cx="233.300" cy="215" r="10"/>
+<circle cx="190" cy="240" r="10"/><circle cx="146.700" cy="215" r="10"/><circle cx="146.700" cy="165" r="10"/>
+</g>
+<!-- Petit pignon -->
+<circle cx="318" cy="112" r="43" stroke="#FD6909" stroke-width="12" stroke-dasharray="16.89 16.89"/>
+<circle cx="318" cy="112" r="37" fill="#10212F" stroke="#FD6909" stroke-width="2.5"/>
+<circle cx="318" cy="112" r="11" stroke="#FD6909" stroke-width="2.5"/>
+<!-- Axes -->
+<path d="M190 82v-22M190 298v22M82 190H60M298 190h22M318 56V40M374 112h18" stroke="#9FB3C6" stroke-width="1" stroke-dasharray="10 4 2 4"/>
+<!-- Clé plate -->
+<g stroke="#9FB3C6" stroke-linecap="round">
+<path d="M300 318l84-66" stroke-width="13"/>
+<path d="M398 222a22 22 0 1 0 22 30" stroke-width="10" stroke-linecap="butt"/>
+</g>
+</svg>

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360" fill="none" stroke-linecap="round" stroke-linejoin="round">
+<defs><pattern id="g" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0v24" stroke="#9FB3C6" stroke-opacity=".09"/></pattern></defs>
+<rect width="480" height="360" fill="#10212F"/><rect width="480" height="360" fill="url(#g)"/>
+<!-- Assemblage en T -->
+<g stroke="#D6E1EB" stroke-width="2.5">
+<rect x="70" y="236" width="340" height="26"/>
+<rect x="227" y="96" width="26" height="140"/>
+</g>
+<path d="M82 262l-10 12M112 262l-10 12M142 262l-10 12M172 262l-10 12M202 262l-10 12M232 262l-10 12M262 262l-10 12M292 262l-10 12M322 262l-10 12M352 262l-10 12M382 262l-10 12M410 262l-10 12" stroke="#9FB3C6" stroke-width="1.25" opacity=".5"/>
+<!-- Cordons d'angle -->
+<path d="M227 236h-24l24-24zM253 236h24l-24-24z" fill="#FD6909"/>
+<!-- Torche -->
+<path d="M378 62l-26 42" stroke="#9FB3C6" stroke-width="15"/>
+<path d="M352 104l-56 88" stroke="#D6E1EB" stroke-width="9"/>
+<path d="M296 192l-9 14" stroke="#D6E1EB" stroke-width="4"/>
+<!-- Arc et étincelles -->
+<circle cx="282" cy="213" r="7" fill="#FD6909"/>
+<path d="M296 222l14 8M298 208l16-3M284 196l3-15M268 204l-12-10M300 232l8 14M316 218l12 2" stroke="#FD6909" stroke-width="2"/>
+<!-- Symbole de soudure -->
+<g stroke="#FD6909" stroke-width="2">
+<path d="M84 150h66l58 66"/>
+<path d="M104 150v16l16-16"/>
+</g>
+<path d="M208 216l-4-12 9 5z" fill="#FD6909"/>
+<text x="128" y="143" font-family="Arial, sans-serif" font-size="15" fill="#FD6909">a5</text>
+</svg>

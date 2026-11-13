@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360" fill="none" stroke-linecap="butt" stroke-linejoin="round">
+<defs><pattern id="g" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0v24" stroke="#9FB3C6" stroke-opacity=".09"/></pattern></defs>
+<rect width="480" height="360" fill="#10212F"/><rect width="480" height="360" fill="url(#g)"/>
+<!-- Supports -->
+<path d="M96 126v62M78 188h36M214 126v62M196 188h36M392 276v44M374 320h36" stroke="#9FB3C6" stroke-width="2"/>
+<!-- Ligne de tuyauterie (double trait) -->
+<path d="M30 110h270a30 30 0 0 1 30 30v90a30 30 0 0 0 30 30h90" stroke="#D6E1EB" stroke-width="31"/>
+<path d="M28 110h272a30 30 0 0 1 30 30v90a30 30 0 0 0 30 30h92" stroke="#10212F" stroke-width="26"/>
+<path d="M30 110h270a30 30 0 0 1 30 30v90a30 30 0 0 0 30 30h90" stroke="#9FB3C6" stroke-width="1" stroke-dasharray="16 5 3 5"/>
+<!-- Brides -->
+<g stroke="#D6E1EB" stroke-width="2.5" fill="#10212F">
+<rect x="150" y="86" width="6" height="48"/><rect x="158" y="86" width="6" height="48"/>
+<rect x="306" y="178" width="48" height="6"/><rect x="306" y="186" width="48" height="6"/>
+</g>
+<!-- Vanne -->
+<g stroke="#FD6909" stroke-width="2.5" stroke-linecap="round">
+<path d="M388 242l34 36v-36l-34 36z" fill="#10212F"/>
+<path d="M405 260v-34M389 226h32"/>
+</g>
+<!-- Sens d'écoulement -->
+<path d="M52 74h62" stroke="#FD6909" stroke-width="2" stroke-linecap="round"/>
+<path d="M124 74l-12-5v10z" fill="#FD6909"/>
+<text x="188" y="80" font-family="Arial, sans-serif" font-size="15" fill="#9FB3C6">DN 150</text>
+</svg>

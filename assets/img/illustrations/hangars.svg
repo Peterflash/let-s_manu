@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360" fill="none" stroke-linecap="round" stroke-linejoin="round">
+<defs><pattern id="g" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0v24" stroke="#9FB3C6" stroke-opacity=".09"/></pattern></defs>
+<rect width="480" height="360" fill="#10212F"/><rect width="480" height="360" fill="url(#g)"/>
+<!-- Bardage -->
+<path d="M90 152.500V300M110 145V300M130 137.400V300M150 130V300M170 122.400V300M190 114.800V300M210 107.300V300M230 99.800V300M250 99.800V300M270 107.300V300M290 114.800V300M310 122.400V300M330 130V300M350 137.400V300M370 145V300M390 152.500V300" stroke="#9FB3C6" stroke-width="1" opacity=".45"/>
+<!-- Pignon -->
+<path d="M70 300V160L240 96l170 64v140" stroke="#D6E1EB" stroke-width="2.500"/>
+<path d="M58 164.500L240 96l182 68.500" stroke="#D6E1EB" stroke-width="4"/>
+<!-- Portail coulissant -->
+<rect x="184" y="196" width="112" height="104" fill="#10212F" stroke="#D6E1EB" stroke-width="2.5"/>
+<path d="M240 196v104M204 196v104M222 196v104M258 196v104M276 196v104" stroke="#9FB3C6" stroke-width="1" opacity=".6"/>
+<path d="M170 192h140" stroke="#FD6909" stroke-width="4"/>
+<!-- Faîtage -->
+<path d="M228 100.500L240 96l12 4.500" stroke="#FD6909" stroke-width="5"/>
+<!-- Sol -->
+<path d="M30 300h420" stroke="#D6E1EB" stroke-width="1.5"/>
+<path d="M50 300l-10 12M80 300l-10 12M110 300l-10 12M140 300l-10 12M170 300l-10 12M320 300l-10 12M350 300l-10 12M380 300l-10 12M410 300l-10 12M440 300l-10 12" stroke="#9FB3C6" stroke-width="1" opacity=".5"/>
+<!-- Cote -->
+<path d="M70 334h340M70 328v12M410 328v12" stroke="#9FB3C6" stroke-width="1"/>
+<path d="M70 334l9-4v8zM410 334l-9-4v8z" fill="#9FB3C6"/>
+<rect x="208" y="324" width="64" height="20" fill="#10212F"/>
+<text x="240" y="339" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#9FB3C6">20 000</text>
+</svg>

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360" fill="none" stroke-linecap="round" stroke-linejoin="round">
+<defs><pattern id="g" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0v24" stroke="#9FB3C6" stroke-opacity=".09"/></pattern></defs>
+<rect width="480" height="360" fill="#10212F"/><rect width="480" height="360" fill="url(#g)"/>
+<!-- Façade -->
+<path d="M70 306V88h340v218" stroke="#D6E1EB" stroke-width="2.500"/>
+<path d="M62 88h356M70 104h340" stroke="#D6E1EB" stroke-width="2.500"/>
+<!-- Enseigne -->
+<rect x="112" y="120" width="256" height="36" stroke="#D6E1EB" stroke-width="2"/>
+<path d="M136 138h120M272 138h72" stroke="#9FB3C6" stroke-width="5" opacity=".5"/>
+<!-- Auvent et tirants -->
+<path d="M52 190h376" stroke="#FD6909" stroke-width="8" stroke-linecap="butt"/>
+<path d="M100 186l22-28M380 186l-22-28M240 186v-30" stroke="#FD6909" stroke-width="2"/>
+<!-- Rideau métallique -->
+<rect x="98" y="208" width="134" height="98" stroke="#D6E1EB" stroke-width="2.500"/>
+<path d="M98 220h134M98 232h134M98 244h134M98 256h134M98 268h134M98 280h134M98 292h134" stroke="#9FB3C6" stroke-width="1" opacity=".7"/>
+<!-- Vitrine et porte -->
+<rect x="256" y="208" width="126" height="98" stroke="#D6E1EB" stroke-width="2.500"/>
+<path d="M322 208v98M256 236h66" stroke="#D6E1EB" stroke-width="2"/>
+<path d="M332 258v16" stroke="#FD6909" stroke-width="3"/>
+<path d="M270 262l22-22M276 280l14-14" stroke="#9FB3C6" stroke-width="1" opacity=".6"/>
+<!-- Sol -->
+<path d="M30 306h420" stroke="#D6E1EB" stroke-width="1.500"/>
+<path d="M50 306l-10 12M90 306l-10 12M130 306l-10 12M170 306l-10 12M210 306l-10 12M250 306l-10 12M290 306l-10 12M330 306l-10 12M370 306l-10 12M410 306l-10 12M450 306l-10 12" stroke="#9FB3C6" stroke-width="1" opacity=".5"/>
+</svg>

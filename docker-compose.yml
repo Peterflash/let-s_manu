@@ -1,0 +1,22 @@
+# LET'S MANU SERVICES — lancement du site en local avec Docker
+#
+#   Démarrer :   docker compose up -d --build
+#   Ouvrir :     http://localhost:8080          (administration : http://localhost:8080/admin)
+#   Journaux :   docker compose logs -f
+#   Arrêter :    docker compose down
+#
+# Le dossier du projet est monté dans le conteneur : toute modification d'un fichier
+# est visible immédiatement, sans reconstruire l'image.
+
+name: letsmanu
+
+services:
+  site:
+    build: .
+    image: letsmanu-site:dev
+    container_name: letsmanu-site
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www/html
+    restart: unless-stopped
