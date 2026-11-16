@@ -52,7 +52,7 @@ $t = $stats['totaux'];
 <section class="bloc" aria-labelledby="titre-raccourcis">
     <h2 id="titre-raccourcis">Raccourcis</h2>
     <div class="actions">
-        <a class="btn btn--primaire" href="<?= e(admin_url('realisations/nouvelle')) ?>">Ajouter une réalisation</a>
+        <a class="btn btn--primaire" href="<?= e(admin_url('realisations/nouvelle')) ?>">Ajouter un chantier</a>
         <a class="btn btn--contour" href="<?= e(admin_url('textes')) ?>">Modifier un texte</a>
         <a class="btn btn--contour" href="<?= e(admin_url('photos')) ?>">Changer une photo</a>
     </div>

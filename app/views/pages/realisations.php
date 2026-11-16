@@ -24,6 +24,9 @@ $aDesDemos = (bool) array_filter($liste, fn ($r) => !empty($r['demo']));
     <div class="conteneur">
         <h1><?= t('realisations.titre') ?></h1>
         <p class="tete-page__chapeau"><?= t('realisations.chapeau') ?></p>
+<?php if (array_filter($liste, fn ($r) => !empty($r['photos']))): ?>
+        <p class="tete-page__lien"><a class="lien-fort lien-icone" href="<?= e(url('photos')) ?>"><?= icon('photo') ?><span><?= t('realisations.toutes_photos') ?></span></a></p>
+<?php endif; ?>
     </div>
 </section>
 

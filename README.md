@@ -37,14 +37,17 @@ php -S localhost:8000 router.php
 | Je veux… | Dans l'administration |
 |---|---|
 | Voir une demande de devis, rappeler le client | **Demandes de devis** : boutons Appeler, WhatsApp, e-mail, photos jointes |
-| Ajouter un chantier | **Réalisations → Ajouter une réalisation** : titre, lieu, 3 à 8 photos, deux phrases sur le défi et la solution |
+| Ajouter un chantier | **Réalisations → Ajouter un chantier** : titre, état (terminé ou en cours), lieu, photos (20 au plus). Description et anglais facultatifs, repliés en bas |
+| Ajouter des photos à un chantier en cours | **Réalisations →** le chantier **→ Ajouter des photos**, étiquette « Pendant les travaux » ; passer l'état sur « Terminé » à la fin |
+| Choisir la photo affichée en vignette | **Réalisations →** le chantier **→** cocher « Photo principale » |
+| Préparer un chantier à venir sans le montrer | **Réalisations → Ajouter un chantier**, décocher « Publier sur le site » |
 | Modifier un texte du site | **Textes du site** : choisir la langue et la rubrique, modifier, enregistrer |
 | Remplacer un dessin par une vraie photo | **Photos du site** |
 | Modifier les questions de la bulle « Questions rapides » | **Questions rapides** |
 | Changer téléphone, horaires, e-mail, GPS | **Paramètres** |
 | Remplacer la plaquette PDF | **Paramètres → Plaquette PDF** |
 
-Les photos envoyées sont redimensionnées et allégées automatiquement. Avant de publier une photo, assurez-vous d'avoir l'accord du client et des personnes visibles.
+Les photos envoyées sont redimensionnées et allégées automatiquement, dès le téléphone avant l'envoi (une photo de 3 à 10 Mo part en moins de 500 Ko). Avant de publier une photo, assurez-vous d'avoir l'accord du client et des personnes visibles.
 
 ## Mise en ligne chez Hostinger
 
@@ -66,7 +69,7 @@ Le site est livré avec des contenus rédigés à partir du cahier des charges. 
 
 - **Réalisations** : les six fiches livrées sont des « projets types » qui décrivent des prestations courantes, pas de vrais chantiers. À remplacer (le tableau de bord le rappelle).
 - **Photos** : tous les visuels sont des dessins techniques en attendant les vraies photos de chantiers, d'atelier et d'équipe.
-- **Liste des prestations et du matériel** (pages des deux pôles) : à relire ligne par ligne.
+- **Liste des prestations et du matériel** (pages des deux pôles) : à relire ligne par ligne. Les prestations BTP et Électricité (Services industriels) ont été rédigées sans fiche de l'entreprise : à confirmer ou corriger en priorité (Textes du site → Services industriels).
 - **Chiffres clés** de l'accueil, en particulier « 24 h » pour une urgence à Abidjan, et la mention « devis gratuit ».
 - **Horaires** d'ouverture (valeurs provisoires) et numéro WhatsApp définitif.
 - **Coordonnées GPS** exactes du siège.

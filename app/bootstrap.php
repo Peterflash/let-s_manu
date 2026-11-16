@@ -42,7 +42,8 @@ function send_security_headers(): void
         "default-src 'self'",
         "script-src 'self' 'nonce-" . NONCE . "' https://www.googletagmanager.com https://challenges.cloudflare.com",
         "style-src 'self' 'unsafe-inline'",
-        "img-src 'self' data: https://www.googletagmanager.com https://www.google-analytics.com",
+        // blob: : aperçu et allègement des photos dans le navigateur avant envoi (formulaire de devis, admin)
+        "img-src 'self' data: blob: https://www.googletagmanager.com https://www.google-analytics.com",
         "font-src 'self'",
         "connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com",
         "frame-src https://www.google.com https://challenges.cloudflare.com",

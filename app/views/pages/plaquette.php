@@ -41,8 +41,10 @@ $langue = lang();
     </section>
 </article>
 
-<article class="feuille">
+<?php /* Une feuille par pôle : le pôle industriel (7 prestations) remplit la sienne ; la méthode complète celle du dernier pôle */ ?>
+<?php $dernierPole = array_key_last(config('poles')); ?>
 <?php foreach (config('poles') as $pole => $services): ?>
+<article class="feuille">
     <section class="bloc">
         <h2><?= t("poles.$pole") ?></h2>
         <p><?= t("$pole.chapeau") ?></p>
@@ -59,10 +61,8 @@ $langue = lang();
 <?php endforeach; ?>
         </div>
     </section>
-<?php endforeach; ?>
-</article>
+<?php if ($pole === $dernierPole): ?>
 
-<article class="feuille">
     <section class="bloc">
         <h2><?= t('plaquette.methode') ?></h2>
         <ol class="methode">
@@ -71,6 +71,11 @@ $langue = lang();
 <?php endforeach; ?>
         </ol>
     </section>
+<?php endif; ?>
+</article>
+<?php endforeach; ?>
+
+<article class="feuille">
 
     <section class="bloc">
         <h2><?= t('about.hse.titre') ?></h2>

@@ -74,10 +74,11 @@ body.admin { background: var(--gris-50); padding-bottom: 0; }
 .lignes--images a > span { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
 .lignes--images img { width: 96px; height: 72px; object-fit: cover; border-radius: var(--rayon); flex: none; background: var(--acier-900); }
 
-.urgent, .nouveau, .traite { display: inline-block; padding: 1px 8px; border-radius: 2px; font-size: 0.75rem; font-weight: 700; }
+.urgent, .nouveau, .traite, .en-cours { display: inline-block; padding: 1px 8px; border-radius: 2px; font-size: 0.75rem; font-weight: 700; }
 .urgent { background: var(--orange); color: var(--acier-950); }
 .nouveau { background: #DDF0E4; color: #124D2A; }
 .traite { background: var(--gris-100); color: var(--gris-600); }
+.en-cours { background: var(--acier-900); color: var(--blanc); }
 
 /* Détail d'une demande */
 .details { border-top: var(--trait); margin-bottom: 8px; }
@@ -98,6 +99,7 @@ body.admin { background: var(--gris-50); padding-bottom: 0; }
 .champ--texte label { font-size: var(--t-petit); color: var(--gris-600); font-weight: 500; }
 .champ--texte textarea { min-height: 0; }
 .question legend { border: 0; padding: 0; margin: 0 0 8px; width: auto; }
+.admin .formulaire fieldset.champ > legend { font-family: var(--police); font-size: 1rem; font-weight: 600; border: 0; padding: 0; margin: 0 0 6px; }
 
 .acces { max-width: 420px; margin: 32px auto; background: var(--blanc); border: var(--trait); border-radius: var(--rayon); padding: 24px 20px; }
 .acces h1 { font-size: 1.5rem; }
@@ -111,11 +113,20 @@ body.admin { background: var(--gris-50); padding-bottom: 0; }
 .rubriques a { display: inline-flex; align-items: center; min-height: 40px; padding: 4px 12px; border: var(--trait); border-radius: var(--rayon); background: var(--blanc); font-size: 0.9375rem; font-weight: 600; color: var(--acier-900); text-decoration: none; }
 .rubriques a[aria-current="true"] { background: var(--acier-900); border-color: var(--acier-900); color: var(--blanc); }
 
+/* Formulaire d'un chantier : partie facultative repliée */
+.bloc--repli > summary { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 8px; min-height: 48px; padding: 8px 0; cursor: pointer; list-style: none; }
+.bloc--repli > summary::-webkit-details-marker { display: none; }
+.bloc--repli > summary::before { content: ''; flex: none; align-self: center; width: 9px; height: 9px; margin: 0 6px 0 2px; border-right: 2.5px solid var(--acier-900); border-bottom: 2.5px solid var(--acier-900); transform: rotate(-45deg); }
+.bloc--repli[open] > summary::before { transform: rotate(45deg); }
+.bloc--repli > summary h2 { margin: 0; }
+.bloc--repli[open] > summary { margin-bottom: 12px; }
+.admin .depot__apercus:empty { display: none; }
+
 .photos-edit { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 12px; margin-bottom: 20px; }
-.photos-edit li { display: grid; gap: 6px; padding: 10px; border: var(--trait); border-radius: var(--rayon); }
+.photos-edit li { display: grid; grid-template-columns: minmax(0, 1fr); gap: 6px; padding: 10px; border: var(--trait); border-radius: var(--rayon); }
 .photos-edit img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 2px; background: var(--acier-900); }
 .photos-edit label { font-size: var(--t-petit); font-weight: 600; }
-.photos-edit select { min-height: 44px; font: inherit; padding: 6px 10px; border: 1.5px solid var(--gris-600); border-radius: var(--rayon); background: var(--blanc); }
+.photos-edit select, .photos-edit input[type="text"], .photos-edit input[type="date"] { width: 100%; min-width: 0; min-height: 44px; font: inherit; padding: 6px 10px; border: 1.5px solid var(--gris-600); border-radius: var(--rayon); background: var(--blanc); }
 
 .emplacements { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
 .emplacements .bloc { display: grid; gap: 10px; align-content: start; margin: 0; }

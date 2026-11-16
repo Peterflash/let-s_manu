@@ -217,6 +217,31 @@ function date_longue(string $iso): string
     return (int) date('j', $ts) . ' ' . $mois[(int) date('n', $ts) - 1] . ' ' . date('Y', $ts) . ' à ' . date('H\hi', $ts);
 }
 
+/** Date AAAA-MM-JJ en toutes lettres, dans la langue de la page (« 12 mars 2025 », « 12 March 2025 »). */
+function date_jour(string $iso): string
+{
+    if (!preg_match('/^(\d{4})-(\d{2})-(\d{2})$/', $iso, $m) || !checkdate((int) $m[2], (int) $m[3], (int) $m[1])) {
+        return '';
+    }
+    $mois = lines('ui.mois');
+    return (int) $m[3] . ' ' . ($mois[(int) $m[2] - 1] ?? $m[2]) . ' ' . $m[1];
+}
+
+/**
+ * Date d'un projet pour la photothèque : mois et année de la photo la plus récente (« mars 2025 »),
+ * sinon l'année des travaux, sinon '' (aucune date n'est inventée).
+ */
+function date_projet(array $r): string
+{
+    $dates = array_filter(array_map(fn ($p) => (string) ($p['date'] ?? ''), $r['photos'] ?? []), fn ($d) => date_jour($d) !== '');
+    if ($dates) {
+        $derniere = max($dates);
+        $mois = lines('ui.mois');
+        return ($mois[(int) substr($derniere, 5, 2) - 1] ?? '') . ' ' . substr($derniere, 0, 4);
+    }
+    return (string) ($r['annee'] ?? '');
+}
+
 /* ---------- URL ---------- */
 
 /** Adresse d'une page du site dans la langue voulue (voir ROUTES dans routes.php). */
@@ -386,4 +411,44 @@ function photo_vignette(string $chemin): string
 {
     $vignette = preg_replace('/\.webp$/', '-v.webp', $chemin);
     return photo_url($vignette !== $chemin && is_file(ROOT . '/' . $vignette) ? $vignette : $chemin);
+}
+
+/** Libellés des étiquettes de photo choisies dans l'admin (avant, pendant, après les travaux). */
+function etiquettes_photo(): array
+{
+    return ['avant' => tx('realisations.avant'), 'pendant' => tx('realisations.pendant'), 'apres' => tx('realisations.apres')];
+}
+
+/** Étiquette d'une réalisation : « Projet type » (exemple livré avec le site) ou « Chantier en cours », sinon ''. */
+function etiquette_realisation(array $r): string
+{
+    if (!empty($r['demo'])) {
+        return (string) tx('ui.projet_type');
+    }
+    return ($r['etat'] ?? '') === 'en-cours' ? (string) tx('ui.en_cours') : '';
+}
+
+/**
+ * Photos d'une réalisation, prêtes pour la visionneuse (site.js).
+ * Lieu : celui de la photo, sinon celui du chantier. Date : celle de la prise de vue, sinon l'année des travaux.
+ * Rien n'est inventé : sans information, le champ reste vide et n'est pas affiché.
+ */
+function photos_visionneuse(array $r): array
+{
+    $photos = $r['photos'] ?? [];
+    $etiquettes = etiquettes_photo();
+    $titre = L($r['titre']);
+    $liste = [];
+    foreach ($photos as $i => $p) {
+        $dessin = str_ends_with($p['fichier'], '.svg');
+        $liste[] = [
+            'titre'   => $titre,
+            'src'     => photo_url($p['fichier']),
+            'alt'     => $titre . ' (' . ($i + 1) . '/' . count($photos) . ')',
+            'legende' => $etiquettes[$p['etiquette'] ?? ''] ?? ($dessin ? tx('ui.illustration') : ''),
+            'lieu'    => trim((string) ($p['lieu'] ?? '')) !== '' ? trim((string) $p['lieu']) : L($r['lieu'] ?? ''),
+            'date'    => date_jour((string) ($p['date'] ?? '')) ?: (string) ($r['annee'] ?? ''),
+        ];
+    }
+    return $liste;
 }

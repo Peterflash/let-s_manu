@@ -4,7 +4,7 @@ Site vitrine B2B de LET'S MANU SERVICES (SARL, Abidjan, créée en 2022) : servi
 
 ## Ce qu'il faut savoir avant de toucher au site
 
-- **Deux pôles seulement** : services industriels (pôle principal) et construction métallique. Ne jamais afficher tout l'objet social ; les autres activités tiennent en une ligne « Autres prestations sur demande » dans À propos.
+- **Deux pôles seulement** : services industriels (pôle principal) et construction métallique. BTP et électricité sont des prestations du pôle services industriels, pas des pôles. Ne jamais afficher tout l'objet social ; les autres activités tiennent en une ligne « Autres prestations sur demande » dans À propos.
 - **Objectif n° 1 : des demandes de devis** (formulaire, WhatsApp, appel). Tout écran doit laisser ces trois actions à portée de pouce.
 - **Mobile d'abord, data chère** : visiteurs sur Android en 3G/4G. Page d'accueil < 1,5 Mo, aucune vidéo en lecture automatique, images WebP en chargement différé, carte Google Maps chargée au clic seulement.
 - **Ton** : professionnel, direct, vouvoiement, phrases courtes. Pas de superlatifs creux ; on prouve par le concret.

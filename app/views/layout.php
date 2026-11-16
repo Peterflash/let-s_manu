@@ -40,7 +40,7 @@ if ($reseaux) {
 }
 
 $menu = ['home', 'industriel', 'construction', 'realisations', 'about', 'contact'];
-$pageActive = $page === 'realisation' ? 'realisations' : $page;
+$pageActive = in_array($page, ['realisation', 'photos'], true) ? 'realisations' : $page;
 ?>
 <!doctype html>
 <html lang="<?= $langue ?>">
@@ -87,7 +87,7 @@ $pageActive = $page === 'realisation' ? 'realisations' : $page;
         <nav class="menu" id="menu" aria-label="<?= t('nav.principale') ?>">
             <ul class="menu__liste">
 <?php foreach ($menu as $cle): ?>
-                <li class="<?= $cle === 'home' ? 'menu__accueil' : '' ?>"><a href="<?= e(url($cle)) ?>"<?= $cle === $pageActive ? ' aria-current="page"' : '' ?>><?= t("nav.$cle") ?></a></li>
+                <li><a href="<?= e(url($cle)) ?>"<?= $cle === $pageActive ? ' aria-current="page"' : '' ?>><?= t("nav.$cle") ?></a></li>
 <?php endforeach; ?>
             </ul>
         </nav>
@@ -150,6 +150,7 @@ $pageActive = $page === 'realisation' ? 'realisations' : $page;
             <li><a href="<?= e(url('mentions')) ?>"><?= t('pied.mentions') ?></a></li>
             <li><a href="<?= e(url('confidentialite')) ?>"><?= t('pied.confidentialite') ?></a></li>
             <li><a href="<?= e($alternates[$autreLangue]) ?>" hreflang="<?= $autreLangue ?>" lang="<?= $autreLangue ?>"><?= t('ui.autre_langue') ?></a></li>
+            <li><a href="<?= e(BASE) ?>/admin/connexion" rel="nofollow"><?= t('pied.admin') ?></a></li>
         </ul>
     </div>
 </footer>

@@ -72,8 +72,32 @@ function image_importer(string $source, string $destination, int $coteMax = 1600
 }
 
 /**
- * Remet à plat le tableau $_FILES d'un champ multiple : [ ['name'=>…, 'tmp_name'=>…, 'error'=>…, 'size'=>…], … ]
- * Les emplacements laissés vides sont ignorés.
+ * Date de prise de vue enregistrée par l'appareil (EXIF des photos JPEG), au format AAAA-MM-JJ, sinon ''.
+ * À lire sur le fichier d'origine : le réencodage par GD efface ces métadonnées.
+ */
+function image_date_prise(string $fichier): string
+{
+    if (image_type($fichier) !== 'jpeg' || !function_exists('exif_read_data')) {
+        return '';
+    }
+    $exif = @exif_read_data($fichier);
+    $brute = (string) ($exif['DateTimeOriginal'] ?? $exif['DateTimeDigitized'] ?? '');
+    return preg_match('/^(\d{4}):(\d{2}):(\d{2})/', $brute, $m) ? date_prise_valide("$m[1]-$m[2]-$m[3]") : '';
+}
+
+/** Date de prise de vue AAAA-MM-JJ plausible (date réelle, entre 1990 et aujourd'hui), sinon ''. */
+function date_prise_valide(string $date): string
+{
+    if (!preg_match('/^(\d{4})-(\d{2})-(\d{2})$/', $date, $m) || !checkdate((int) $m[2], (int) $m[3], (int) $m[1]) || (int) $m[1] < 1990) {
+        return '';
+    }
+    return $date <= date('Y-m-d') ? $date : '';
+}
+
+/**
+ * Remet à plat le tableau $_FILES d'un champ multiple : [ ['name'=>…, 'tmp_name'=>…, 'error'=>…, 'size'=>…, 'indice'=>…], … ]
+ * Les emplacements laissés vides sont ignorés. « indice » est la position du fichier dans l'envoi,
+ * pour retrouver un champ qui l'accompagne (ex. photos_date[indice]).
  */
 function fichiers_envoyes(string $champ): array
 {
@@ -84,10 +108,10 @@ function fichiers_envoyes(string $champ): array
     $liste = [];
     if (is_array($brut['name'])) {
         foreach ($brut['name'] as $i => $nom) {
-            $liste[] = ['name' => $nom, 'tmp_name' => $brut['tmp_name'][$i], 'error' => $brut['error'][$i], 'size' => $brut['size'][$i]];
+            $liste[] = ['name' => $nom, 'tmp_name' => $brut['tmp_name'][$i], 'error' => $brut['error'][$i], 'size' => $brut['size'][$i], 'indice' => $i];
         }
     } else {
-        $liste[] = $brut;
+        $liste[] = $brut + ['indice' => 0];
     }
     return array_values(array_filter($liste, fn ($f) => $f['error'] !== UPLOAD_ERR_NO_FILE));
 }

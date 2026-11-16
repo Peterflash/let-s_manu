@@ -8,11 +8,17 @@ declare(strict_types=1);
 const ADMIN_INACTIVITE = 7200;      // déconnexion après 2 h sans activité
 const ADMIN_ESSAIS = 5;             // tentatives de connexion autorisées…
 const ADMIN_ESSAIS_FENETRE = 900;   // …par quart d'heure et par adresse IP
-const PHOTOS_PAR_REALISATION = 8;
+const PHOTOS_PAR_REALISATION = 20; // avant, pendant et après les travaux
 
 function admin_url(string $chemin = ''): string
 {
     return BASE . '/admin' . ($chemin !== '' ? '/' . $chemin : '');
+}
+
+/** Limite du serveur en clair : « 96M » devient « 96 Mo ». */
+function admin_limite(string $directive): string
+{
+    return (string) preg_replace(['/^(\d+)\s*K$/i', '/^(\d+)\s*M$/i', '/^(\d+)\s*G$/i'], ['$1 Ko', '$1 Mo', '$1 Go'], trim((string) ini_get($directive)));
 }
 
 function admin_render(string $vue, array $vars = []): void
@@ -52,6 +58,13 @@ function admin_dispatch(string $chemin): void
         redirect(admin_url('connexion'));
     }
     $_SESSION['admin_vu'] = time();
+
+    // Envoi plus lourd que la limite du serveur : PHP vide alors $_POST et $_FILES.
+    // Sans ce contrôle, le message serait « La session a expiré », ce qui égare.
+    if ($post && !$_POST && !$_FILES && (int) ($_SERVER['CONTENT_LENGTH'] ?? 0) > 0) {
+        flash('erreur', 'Envoi trop lourd pour le serveur (' . admin_limite('post_max_size') . ' au plus en une fois) : rien n\'a été enregistré. Ajoutez les photos en plusieurs fois.');
+        $post = false;
+    }
 
     if ($post && !csrf_check()) {
         flash('erreur', 'La session a expiré. Recommencez.');
@@ -243,7 +256,7 @@ function admin_realisations(string $id, bool $post): void
     }
     $vide = ['fr' => '', 'en' => ''];
     $r = $nouvelle
-        ? ['id' => bin2hex(random_bytes(4)), 'slug' => '', 'demo' => false, 'publie' => true, 'date' => date('Y-m-d'), 'pole' => 'industriel', 'secteur' => 'industrie', 'annee' => date('Y'),
+        ? ['id' => bin2hex(random_bytes(4)), 'slug' => '', 'demo' => false, 'publie' => true, 'etat' => 'termine', 'date' => date('Y-m-d'), 'pole' => 'industriel', 'secteur' => 'industrie', 'annee' => date('Y'),
            'titre' => $vide, 'client' => $vide, 'lieu' => $vide, 'intervention' => $vide, 'duree' => $vide, 'defi' => $vide, 'solution' => $vide, 'photos' => []]
         : $liste[$indice];
     $erreurs = [];
@@ -267,12 +280,14 @@ function admin_realisations(string $id, bool $post): void
         $r['date'] = preg_match('/^\d{4}-\d{2}-\d{2}$/', $texte('date', 10)) ? $texte('date', 10) : date('Y-m-d');
         $r['publie'] = !empty($_POST['publie']);
         $r['demo'] = !empty($r['demo']) && !empty($_POST['demo']);
+        $r['etat'] = ($_POST['etat'] ?? '') === 'en-cours' ? 'en-cours' : 'termine';
 
         if ($r['titre']['fr'] === '') {
             $erreurs[] = 'Le titre en français est obligatoire.';
         }
 
-        // Photos existantes : étiquette (avant / après) et suppression
+        // Photos existantes : photo principale (vignette du site), étiquette, lieu, date et suppression
+        $principale = (string) ($_POST['photo_principale'] ?? '');
         $conservees = [];
         foreach ($r['photos'] as $i => $photo) {
             if (!empty($_POST['photo_supprimer'][$i])) {
@@ -283,22 +298,39 @@ function admin_realisations(string $id, bool $post): void
                 continue;
             }
             $etiquette = (string) ($_POST['photo_etiquette'][$i] ?? '');
-            $photo['etiquette'] = in_array($etiquette, ['avant', 'apres'], true) ? $etiquette : '';
-            $conservees[] = $photo;
+            $photo['etiquette'] = in_array($etiquette, ['avant', 'pendant', 'apres'], true) ? $etiquette : '';
+            // Lieu et date de la prise de vue : vides, la visionneuse reprend le lieu du chantier et l'année des travaux.
+            $photo['lieu'] = mb_substr(trim((string) ($_POST['photo_lieu'][$i] ?? '')), 0, 140);
+            $date = trim((string) ($_POST['photo_date'][$i] ?? ''));
+            $photo['date'] = preg_match('/^(\d{4})-(\d{2})-(\d{2})$/', $date, $m) && checkdate((int) $m[2], (int) $m[3], (int) $m[1]) ? $date : '';
+            if ((string) $i === $principale) {
+                array_unshift($conservees, $photo); // la première photo sert de vignette
+            } else {
+                $conservees[] = $photo;
+            }
         }
         $r['photos'] = $conservees;
 
-        // Nouvelles photos
+        // Nouvelles photos. Allégées dans le navigateur avant l'envoi, elles ont perdu leur date de prise de vue :
+        // admin.js la lit sur la photo d'origine et l'envoie dans photos_date[indice du fichier].
+        $datesLues = (array) ($_POST['photos_date'] ?? []);
+        $ajoutees = 0;
         foreach (fichiers_envoyes('photos') as $envoi) {
             if (count($r['photos']) >= PHOTOS_PAR_REALISATION) {
                 $erreurs[] = 'Une réalisation accepte ' . PHOTOS_PAR_REALISATION . ' photos au maximum : les photos en trop ont été ignorées.';
                 break;
             }
+            if (in_array($envoi['error'], [UPLOAD_ERR_INI_SIZE, UPLOAD_ERR_FORM_SIZE], true)) {
+                $erreurs[] = 'La photo « ' . $envoi['name'] . ' » est trop lourde (' . admin_limite('upload_max_filesize') . ' au plus) : elle n\'a pas été importée.';
+                continue;
+            }
             $nom = bin2hex(random_bytes(5));
             $relatif = 'uploads/realisations/' . $r['id'] . '/' . $nom . '.webp';
             if ($envoi['error'] === UPLOAD_ERR_OK && image_importer($envoi['tmp_name'], ROOT . '/' . $relatif, 1600, 80)) {
                 image_importer($envoi['tmp_name'], ROOT . '/' . preg_replace('/\.webp$/', '-v.webp', $relatif), 640, 72);
-                $r['photos'][] = ['fichier' => $relatif, 'etiquette' => ''];
+                $date = date_prise_valide(trim((string) ($datesLues[$envoi['indice']] ?? ''))) ?: image_date_prise($envoi['tmp_name']);
+                $r['photos'][] = ['fichier' => $relatif, 'etiquette' => '', 'lieu' => '', 'date' => $date];
+                $ajoutees++;
             } else {
                 $erreurs[] = 'Le fichier « ' . $envoi['name'] . " » n'a pas pu être importé (JPG, PNG ou WebP uniquement).";
             }
@@ -321,7 +353,7 @@ function admin_realisations(string $id, bool $post): void
             }
             store_write('realisations', $liste);
             if (!$erreurs) {
-                flash('succes', 'Réalisation enregistrée.');
+                flash('succes', 'Réalisation enregistrée' . ($ajoutees ? ' : ' . $ajoutees . ' photo(s) ajoutée(s)' : '') . '.');
                 redirect(admin_url('realisations/' . $r['id']));
             }
             $nouvelle = false;

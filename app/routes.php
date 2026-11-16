@@ -10,6 +10,7 @@ const ROUTES = [
         'industriel'      => 'services-industriels',
         'construction'    => 'construction-metallique',
         'realisations'    => 'realisations',
+        'photos'          => 'photos',
         'about'           => 'a-propos',
         'contact'         => 'contact',
         'mentions'        => 'mentions-legales',
@@ -22,6 +23,7 @@ const ROUTES = [
         'industriel'      => 'industrial-services',
         'construction'    => 'steel-construction',
         'realisations'    => 'projects',
+        'photos'          => 'photos',
         'about'           => 'about',
         'contact'         => 'contact',
         'mentions'        => 'legal-notice',
@@ -121,6 +123,11 @@ function dispatch(): void
             }
             break;
 
+        case 'photos':
+            // Photothèque : les photos de chaque réalisation publiée, regroupées par projet.
+            render('pages/photos', $commun + ['liste' => array_values(array_filter(realisations(), fn ($r) => !empty($r['photos'])))]);
+            break;
+
         case 'about':
             render('pages/about', $commun);
             break;
@@ -166,7 +173,7 @@ function page_realisation(string $slug, array $commun): void
 function page_sitemap(): void
 {
     header('Content-Type: application/xml; charset=UTF-8');
-    $pages = ['home', 'industriel', 'construction', 'realisations', 'about', 'contact', 'carte', 'mentions', 'confidentialite'];
+    $pages = ['home', 'industriel', 'construction', 'realisations', 'photos', 'about', 'contact', 'carte', 'mentions', 'confidentialite'];
     echo '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
     echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">' . "\n";
     $ligne = function (string $fr, string $en, string $priorite): void {

@@ -15,7 +15,7 @@ return [
         ],
         'industriel' => [
             'title' => "Services industriels à Abidjan : soudure, tuyauterie, maintenance | LET'S MANU SERVICES",
-            'desc'  => "Soudure et chaudronnerie, tuyauterie industrielle, maintenance et réparation d'équipements, sablage, manutention et levage. Intervention sur site en Côte d'Ivoire.",
+            'desc'  => "Soudure et chaudronnerie, tuyauterie industrielle, maintenance et réparation d'équipements, sablage, levage, BTP et électricité. Intervention sur site en Côte d'Ivoire.",
         ],
         'construction' => [
             'title' => "Construction métallique à Abidjan : hangars, charpentes, magasins | LET'S MANU SERVICES",
@@ -24,6 +24,10 @@ return [
         'realisations' => [
             'title' => "Réalisations : chantiers industriels et constructions métalliques | LET'S MANU SERVICES",
             'desc'  => "Exemples d'interventions industrielles et de constructions métalliques en Côte d'Ivoire, classés par pôle et par secteur d'activité.",
+        ],
+        'photos' => [
+            'title' => "Photos de nos réalisations | LET'S MANU SERVICES",
+            'desc'  => "Photos de nos chantiers industriels et de nos constructions métalliques en Côte d'Ivoire, classées par projet, avec le lieu et la date.",
         ],
         'about' => [
             'title' => "À propos : entreprise, équipe, sécurité | LET'S MANU SERVICES",
@@ -71,7 +75,9 @@ return [
         'ecrire_whatsapp'    => 'Écrire sur WhatsApp',
         'autre_langue'       => 'English version',
         'projet_type'        => 'Projet type',
+        'en_cours'           => 'Chantier en cours',
         'illustration'       => 'Illustration',
+        'mois'               => "janvier\nfévrier\nmars\navril\nmai\njuin\njuillet\naoût\nseptembre\noctobre\nnovembre\ndécembre",
         'actions_rapides'    => 'Actions rapides',
         'plaquette'          => 'Télécharger la plaquette (PDF)',
         'introuvable_titre'  => 'Page introuvable',
@@ -96,6 +102,7 @@ return [
         'droits'    => 'Tous droits réservés.',
         'mentions'  => 'Mentions légales',
         'confidentialite' => 'Politique de confidentialité',
+        'admin'     => 'Espace administrateur',
     ],
 
     'secteurs' => [
@@ -163,7 +170,7 @@ return [
 
     'industriel' => [
         'titre'   => 'Services industriels',
-        'chapeau' => "Soudure, chaudronnerie, tuyauterie, maintenance, sablage et levage : nous intervenons sur vos équipements, en atelier ou directement sur votre site, à Abidjan et partout en Côte d'Ivoire.",
+        'chapeau' => "Soudure, chaudronnerie, tuyauterie, maintenance, sablage, levage, BTP et électricité : nous intervenons sur vos équipements et vos installations, en atelier ou directement sur votre site, à Abidjan et partout en Côte d'Ivoire.",
         'sommaire' => 'Nos prestations',
         'pourquoi' => [
             'titre' => 'Pourquoi nous confier vos travaux',
@@ -206,6 +213,19 @@ return [
                 'texte'       => "Nous déplaçons, posons et déposons vos équipements lourds, avec les moyens et les précautions que l'opération exige.",
                 'exemples'    => "Dépose et repose d'équipements lors d'un arrêt\nMise en place de machines neuves\nTransfert d'équipements dans l'usine\nMontage d'éléments de charpente",
                 'equipements' => "Moteurs, pompes et réducteurs\nCuves et réservoirs\nMachines de production\nÉléments de structure",
+            ],
+            // Prestations types, à faire valider ligne par ligne par l'entreprise avant la mise en ligne
+            'btp' => [
+                'titre'       => 'BTP',
+                'texte'       => 'Nous réalisons les travaux de bâtiment et de génie civil de vos sites : fondations, massifs de machines, dalles, maçonnerie, voiries et réseaux.',
+                'exemples'    => "Massifs et socles de machines\nDalles et fondations en béton armé\nMaçonnerie et rénovation de locaux\nVoiries, caniveaux et réseaux d'assainissement",
+                'equipements' => "Bâtiments et locaux techniques\nFondations de hangars et de charpentes\nDalles industrielles et aires de stockage\nVoies d'accès et clôtures de site",
+            ],
+            'electricite' => [
+                'titre'       => 'Électricité',
+                'texte'       => 'Nous installons, entretenons et dépannons les installations électriques de vos usines, ateliers et bâtiments.',
+                'exemples'    => "Électrification d'un atelier ou d'un hangar\nFabrication et modification de tableaux électriques\nRaccordement et commande de moteurs\nRecherche de panne et remise en service",
+                'equipements' => "Tableaux et armoires électriques\nMoteurs et machines de production\nÉclairage de hangars et de sites\nCâbles et chemins de câbles",
             ],
         ],
         'urgence' => [
@@ -307,6 +327,7 @@ return [
         'solution'       => 'La solution',
         'photos'         => 'Photos',
         'avant'          => 'Avant',
+        'pendant'        => 'Pendant les travaux',
         'apres'          => 'Après',
         'retour'         => 'Toutes les réalisations',
         'similaire'      => 'Un besoin similaire ?',
@@ -315,7 +336,20 @@ return [
         'fermer'         => 'Fermer',
         'precedente'     => 'Photo précédente',
         'suivante'       => 'Photo suivante',
+        'voir_photos'    => 'Voir les photos',
+        'photo_lieu'     => 'Lieu',
+        'photo_date'     => 'Date',
         'voir'           => 'Voir la fiche',
+        'toutes_photos'  => 'Voir toutes les photos',
+    ],
+
+    'photos' => [
+        'titre'          => 'Photos de nos réalisations',
+        'chapeau'        => "Les photos sont classées par projet, avec le lieu et la date. Touchez une photo pour l'agrandir.",
+        'fiche'          => 'Voir la fiche du projet',
+        'aucune'         => 'Les photos de nos chantiers seront bientôt publiées ici.',
+        'nombre_un'      => 'photo',
+        'nombre_plusieurs' => 'photos',
     ],
 
     'about' => [

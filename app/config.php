@@ -54,7 +54,7 @@ return [
 
     // Pôles et sous-services (les textes sont dans app/content/*.php)
     'poles' => [
-        'industriel'   => ['soudure', 'tuyauterie', 'maintenance', 'sablage', 'levage'],
+        'industriel'   => ['soudure', 'tuyauterie', 'maintenance', 'sablage', 'levage', 'btp', 'electricite'],
         'construction' => ['hangars', 'charpentes', 'magasins', 'ouvrages'],
     ],
 
@@ -78,6 +78,8 @@ return [
         'maintenance' => 'Maintenance et réparation',
         'sablage'     => 'Sablage et traitement de surface',
         'levage'      => 'Manutention et levage',
+        'btp'         => 'BTP',
+        'electricite' => 'Électricité',
         'hangars'     => 'Hangars et entrepôts',
         'charpentes'  => 'Charpentes et structures',
         'magasins'    => 'Magasins et bâtiments commerciaux',

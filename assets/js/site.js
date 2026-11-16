@@ -166,28 +166,58 @@
         });
     }
 
-    /* ---------- Visionneuse de photos ---------- */
-    var liste = $('[data-visionneuse]');
+    /* ---------- Visionneuse de photos ----------
+       Chaque galerie [data-visionneuse] (fiche d'une réalisation, projets de la photothèque) porte la liste
+       JSON de ses photos : titre du projet, légende, lieu, date. Sans JavaScript, les liens mènent aux images. */
     var visionneuse = $('.visionneuse');
-    if (liste && visionneuse && typeof visionneuse.showModal === 'function') {
-        var liens = $$('a', liste);
+    if (visionneuse && typeof visionneuse.showModal === 'function') {
         var image = $('img', visionneuse);
-        var legende = $('figcaption', visionneuse);
+        var titre = $('[data-titre]', visionneuse);
+        var legende = $('[data-legende]', visionneuse);
+        var lieu = $('[data-lieu]', visionneuse);
+        var date = $('[data-date]', visionneuse);
+        var navigation = $$('.visionneuse__nav', visionneuse);
+        var serie = [];
         var indice = 0;
-        var montrer = function (i) {
-            indice = (i + liens.length) % liens.length;
-            image.src = liens[indice].href;
-            image.alt = $('img', liens[indice]).alt;
-            legende.textContent = (liens[indice].dataset.legende ? liens[indice].dataset.legende + ' — ' : '') + (indice + 1) + ' / ' + liens.length;
+        var declencheur = null;
+        var renseigner = function (bloc, valeur) {
+            $('[data-texte]', bloc).textContent = valeur || '';
+            bloc.hidden = !valeur;
         };
-        $$('.visionneuse__nav', visionneuse).forEach(function (b) { b.hidden = liens.length < 2; });
-        liens.forEach(function (lien, i) {
-            lien.addEventListener('click', function (e) {
-                e.preventDefault();
-                montrer(i);
-                visionneuse.showModal();
+        var montrer = function (i) {
+            indice = (i + serie.length) % serie.length;
+            var photo = serie[indice];
+            image.src = photo.src;
+            image.alt = photo.alt;
+            titre.textContent = photo.titre || '';
+            titre.hidden = !photo.titre;
+            legende.textContent = (photo.legende ? photo.legende + ' — ' : '') + (indice + 1) + ' / ' + serie.length;
+            renseigner(lieu, photo.lieu);
+            renseigner(date, photo.date);
+        };
+        var lire = function (json) {
+            try { var photos = JSON.parse(json); return Array.isArray(photos) ? photos : []; } catch (err) { return []; }
+        };
+        var ouvrir = function (photos, i, origine) {
+            if (!photos.length) { return; }
+            serie = photos;
+            declencheur = origine;
+            navigation.forEach(function (b) { b.hidden = serie.length < 2; });
+            montrer(i);
+            visionneuse.showModal();
+        };
+
+        $$('[data-visionneuse]').forEach(function (liste) {
+            var photos = lire(liste.dataset.visionneuse);
+            $$('a', liste).forEach(function (lien, i) {
+                lien.addEventListener('click', function (e) {
+                    if (!photos[i]) { return; }
+                    e.preventDefault();
+                    ouvrir(photos, i, lien);
+                });
             });
         });
+
         visionneuse.addEventListener('click', function (e) {
             var action = e.target.closest('[data-action]');
             if (action) {
@@ -199,10 +229,14 @@
             }
         });
         visionneuse.addEventListener('keydown', function (e) {
+            if (serie.length < 2) { return; }
             if (e.key === 'ArrowLeft') { montrer(indice - 1); }
             if (e.key === 'ArrowRight') { montrer(indice + 1); }
         });
-        visionneuse.addEventListener('close', function () { liens[indice].focus(); });
+        visionneuse.addEventListener('close', function () {
+            image.removeAttribute('src');
+            if (declencheur) { declencheur.focus(); }
+        });
     }
 
     /* ---------- Carte Google Maps, chargée seulement à la demande ---------- */

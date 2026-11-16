@@ -6,8 +6,9 @@ $demos = count(array_filter($liste, fn ($r) => !empty($r['demo'])));
 ?>
 <h1>Réalisations</h1>
 <div class="actions">
-    <a class="btn btn--primaire" href="<?= e(admin_url('realisations/nouvelle')) ?>">Ajouter une réalisation</a>
+    <a class="btn btn--primaire" href="<?= e(admin_url('realisations/nouvelle')) ?>">Ajouter un chantier</a>
 </div>
+<p class="aide">Chaque chantier devient une fiche « Réalisation » sur le site, avec ses photos (<?= PHOTOS_PAR_REALISATION ?> au plus). Un chantier en cours peut être publié dès les premières photos et complété au fil des travaux.</p>
 
 <?php if ($demos > 0): ?>
 <div class="message message--info">
@@ -29,7 +30,7 @@ $demos = count(array_filter($liste, fn ($r) => !empty($r['demo'])));
             <span>
                 <strong><?= e($r['titre']['fr']) ?></strong>
                 <span><?= e($poles[$r['pole']] ?? '') ?>, <?= e($secteurs[$r['secteur']] ?? '') ?> · <?= count($r['photos']) ?> photo(s)</span>
-                <span class="lignes__meta"><?= empty($r['publie']) ? '<b class="traite">Non publiée</b>' : '<b class="nouveau">Publiée</b>' ?><?= !empty($r['demo']) ? ' <b class="urgent">Projet type</b>' : '' ?><?= $r['titre']['en'] === '' ? ' <b class="traite">Sans traduction anglaise</b>' : '' ?></span>
+                <span class="lignes__meta"><?= empty($r['publie']) ? '<b class="traite">Non publiée</b>' : '<b class="nouveau">Publiée</b>' ?><?= ($r['etat'] ?? '') === 'en-cours' ? ' <b class="en-cours">En cours</b>' : '' ?><?= !empty($r['demo']) ? ' <b class="urgent">Projet type</b>' : '' ?><?= $r['titre']['en'] === '' ? ' <b class="traite">Sans traduction anglaise</b>' : '' ?></span>
             </span>
         </a>
     </li>

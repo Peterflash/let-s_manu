@@ -1,14 +1,15 @@
 <?php
 /** Fiche détaillée d'une réalisation. Variable : $r. */
 $photos = $r['photos'] ?? [];
-$etiquettes = ['avant' => tx('realisations.avant'), 'apres' => tx('realisations.apres')];
+$etiquettes = etiquettes_photo();
+$etiquetteProjet = etiquette_realisation($r);
 $nomService = L($r['intervention'] ?? '');
 ?>
 <section class="tete-page">
     <div class="conteneur">
         <p class="fil"><a href="<?= e(url('realisations')) ?>"><?= icon('chevron-g') ?><span><?= t('realisations.retour') ?></span></a></p>
-<?php if (!empty($r['demo'])): ?>
-        <p><span class="etiquette etiquette--ligne"><?= t('ui.projet_type') ?></span></p>
+<?php if ($etiquetteProjet !== ''): ?>
+        <p><span class="etiquette etiquette--ligne"><?= e($etiquetteProjet) ?></span></p>
 <?php endif; ?>
         <h1><?= e(L($r['titre'])) ?></h1>
         <p class="tete-page__chapeau"><?= e(L($r['client'] ?? '')) ?><?= L($r['client'] ?? '') !== '' && L($r['lieu'] ?? '') !== '' ? ', ' : '' ?><?= e(L($r['lieu'] ?? '')) ?></p>
@@ -20,7 +21,7 @@ $nomService = L($r['intervention'] ?? '');
         <div class="projet__principal">
 <?php if ($photos): ?>
             <h2 class="invisible"><?= t('realisations.photos') ?></h2>
-            <ul class="galerie<?= count($photos) === 1 ? ' galerie--seule' : '' ?>" data-visionneuse>
+            <ul class="galerie<?= count($photos) === 1 ? ' galerie--seule' : '' ?>" id="photos" data-visionneuse="<?= e(json_encode(photos_visionneuse($r), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES)) ?>">
 <?php foreach ($photos as $i => $photo):
     $fichier = $photo['fichier'];
     $estDessin = str_ends_with($fichier, '.svg');
@@ -76,14 +77,8 @@ $nomService = L($r['intervention'] ?? '');
     </div>
 </section>
 
-<dialog class="visionneuse" aria-label="<?= t('realisations.photos') ?>">
-    <button class="visionneuse__fermer" type="button" data-action="fermer" aria-label="<?= t('realisations.fermer') ?>"><?= icon('fermer') ?></button>
-    <button class="visionneuse__nav visionneuse__nav--prec" type="button" data-action="precedente" aria-label="<?= t('realisations.precedente') ?>"><?= icon('chevron-g') ?></button>
-    <figure>
-        <img src="" alt="">
-        <figcaption></figcaption>
-    </figure>
-    <button class="visionneuse__nav visionneuse__nav--suiv" type="button" data-action="suivante" aria-label="<?= t('realisations.suivante') ?>"><?= icon('chevron-d') ?></button>
-</dialog>
+<?php if ($photos) {
+    partial('visionneuse');
+} ?>
 
 <?php partial('appel-final'); ?>

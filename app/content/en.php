@@ -11,7 +11,7 @@ return [
         ],
         'industriel' => [
             'title' => "Industrial services in Abidjan: welding, piping, maintenance | LET'S MANU SERVICES",
-            'desc'  => "Welding and fabrication, industrial piping, equipment maintenance and repair, sandblasting, handling and lifting. On-site work across Côte d'Ivoire.",
+            'desc'  => "Welding and fabrication, industrial piping, equipment maintenance and repair, sandblasting, lifting, building and civil works, electrical works. On-site work across Côte d'Ivoire.",
         ],
         'construction' => [
             'title' => "Steel construction in Abidjan: warehouses, structures, shops | LET'S MANU SERVICES",
@@ -20,6 +20,10 @@ return [
         'realisations' => [
             'title' => "Projects: industrial work and steel construction | LET'S MANU SERVICES",
             'desc'  => "Examples of industrial work and steel construction in Côte d'Ivoire, sorted by division and by sector.",
+        ],
+        'photos' => [
+            'title' => "Project photos | LET'S MANU SERVICES",
+            'desc'  => "Photos of our industrial jobs and steel structures in Côte d'Ivoire, grouped by project, with location and date.",
         ],
         'about' => [
             'title' => "About us: company, team, safety | LET'S MANU SERVICES",
@@ -67,7 +71,9 @@ return [
         'ecrire_whatsapp'    => 'Message us on WhatsApp',
         'autre_langue'       => 'Version française',
         'projet_type'        => 'Sample project',
+        'en_cours'           => 'Work in progress',
         'illustration'       => 'Illustration',
+        'mois'               => "January\nFebruary\nMarch\nApril\nMay\nJune\nJuly\nAugust\nSeptember\nOctober\nNovember\nDecember",
         'actions_rapides'    => 'Quick actions',
         'plaquette'          => 'Download the brochure (PDF)',
         'introuvable_titre'  => 'Page not found',
@@ -92,6 +98,7 @@ return [
         'droits'    => 'All rights reserved.',
         'mentions'  => 'Legal notice',
         'confidentialite' => 'Privacy policy',
+        'admin'     => 'Admin area',
     ],
 
     'secteurs' => [
@@ -159,7 +166,7 @@ return [
 
     'industriel' => [
         'titre'   => 'Industrial services',
-        'chapeau' => "Welding, steel fabrication, piping, maintenance, sandblasting and lifting: we work on your equipment, in our workshop or directly on your site, in Abidjan and across Côte d'Ivoire.",
+        'chapeau' => "Welding, steel fabrication, piping, maintenance, sandblasting, lifting, building and civil works, electrical works: we work on your equipment and installations, in our workshop or directly on your site, in Abidjan and across Côte d'Ivoire.",
         'sommaire' => 'Our services',
         'pourquoi' => [
             'titre' => 'Why work with us',
@@ -202,6 +209,18 @@ return [
                 'texte'       => 'We move, install and remove your heavy equipment with the means and the care the operation requires.',
                 'exemples'    => "Removal and refitting of equipment during a shutdown\nInstallation of new machines\nMoving equipment within the plant\nErection of structural elements",
                 'equipements' => "Motors, pumps and gearboxes\nTanks and vessels\nProduction machines\nStructural elements",
+            ],
+            'btp' => [
+                'titre'       => 'Building and civil works',
+                'texte'       => 'We carry out the building and civil works on your sites: foundations, machine plinths, slabs, masonry, roads and utilities.',
+                'exemples'    => "Machine foundations and plinths\nReinforced concrete slabs and foundations\nMasonry and refurbishment of premises\nRoads, drains and sewer networks",
+                'equipements' => "Buildings and plant rooms\nFoundations for warehouses and steel frames\nIndustrial slabs and storage yards\nSite access roads and fencing",
+            ],
+            'electricite' => [
+                'titre'       => 'Electrical works',
+                'texte'       => 'We install, maintain and repair the electrical installations of your plants, workshops and buildings.',
+                'exemples'    => "Electrification of a workshop or warehouse\nBuilding and modifying switchboards\nMotor connection and control\nFault finding and restart",
+                'equipements' => "Switchboards and control panels\nMotors and production machines\nWarehouse and site lighting\nCables and cable trays",
             ],
         ],
         'urgence' => [
@@ -303,6 +322,7 @@ return [
         'solution'       => 'The solution',
         'photos'         => 'Photos',
         'avant'          => 'Before',
+        'pendant'        => 'During works',
         'apres'          => 'After',
         'retour'         => 'All projects',
         'similaire'      => 'A similar need?',
@@ -311,7 +331,20 @@ return [
         'fermer'         => 'Close',
         'precedente'     => 'Previous photo',
         'suivante'       => 'Next photo',
+        'voir_photos'    => 'View photos',
+        'photo_lieu'     => 'Location',
+        'photo_date'     => 'Date',
         'voir'           => 'View project',
+        'toutes_photos'  => 'View all photos',
+    ],
+
+    'photos' => [
+        'titre'          => 'Project photos',
+        'chapeau'        => 'Photos are grouped by project, with location and date. Tap a photo to enlarge it.',
+        'fiche'          => 'View the project page',
+        'aucune'         => 'Photos of our jobs will be published here soon.',
+        'nombre_un'      => 'photo',
+        'nombre_plusieurs' => 'photos',
     ],
 
     'about' => [

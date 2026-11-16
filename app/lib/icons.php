@@ -13,6 +13,7 @@ function icon(string $nom, string $classe = ''): string
         'email'     => '<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="m22 6-10 7L2 6"/>',
         'repere'    => '<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>',
         'horloge'   => '<circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>',
+        'calendrier' => '<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>',
         'menu'      => '<path d="M3 6h18M3 12h18M3 18h18"/>',
         'fermer'    => '<path d="M18 6 6 18M6 6l12 12"/>',
         'coche'     => '<path d="M20 6 9 17l-5-5"/>',
