@@ -103,6 +103,16 @@ $services = config("poles.$pole");
         </ul>
     </div>
 </section>
+
+<section class="section section--gris" aria-labelledby="secteurs-titre">
+    <div class="conteneur">
+        <div class="section__tete revele">
+            <h2 id="secteurs-titre"><?= t('industriel.secteurs.titre') ?></h2>
+            <p><?= t('industriel.secteurs.texte') ?></p>
+        </div>
+        <div class="revele"><?php partial('secteurs'); ?></div>
+    </div>
+</section>
 <?php else: ?>
 <section class="section" aria-labelledby="processus-titre">
     <div class="conteneur">
@@ -133,7 +143,7 @@ $services = config("poles.$pole");
 <?php endif; ?>
 
 <?php if ($liees): ?>
-<section class="section<?= $pole === 'industriel' ? ' section--gris' : '' ?>" aria-labelledby="liees-titre">
+<section class="section" aria-labelledby="liees-titre">
     <div class="conteneur">
         <div class="section__tete section__tete--lien revele">
             <h2 id="liees-titre"><?= t("$pole.liees") ?></h2>

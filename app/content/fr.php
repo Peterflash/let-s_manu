@@ -102,6 +102,7 @@ return [
         'mines'           => 'Mines',
         'petrole-gaz'     => 'Pétrole et gaz',
         'energie'         => 'Énergie',
+        'electricite'     => 'Électricité',
         'cimenterie'      => 'Cimenterie',
         'agroalimentaire' => 'Agroalimentaire',
         'industrie'       => 'Industrie',
@@ -123,7 +124,7 @@ return [
             'titre' => "L'entreprise en bref",
             'a' => ['valeur' => '2022', 'libelle' => "Année de création, à Abidjan"],
             'b' => ['valeur' => '2', 'libelle' => 'Pôles : services industriels et construction métallique'],
-            'c' => ['valeur' => '7', 'libelle' => "Secteurs d'activité servis"],
+            'c' => ['valeur' => '8', 'libelle' => "Secteurs d'activité servis"],
             'd' => ['valeur' => '24 h', 'libelle' => "Délai d'intervention à Abidjan en cas d'urgence"],
         ],
         'poles' => [
@@ -215,6 +216,10 @@ return [
             'titre' => 'Matériel et moyens',
             'texte' => 'Nos équipes se déplacent avec leur matériel et travaillent en autonomie sur votre site.',
             'liste' => "Postes à souder et groupes électrogènes\nMatériel d'oxycoupage et de meulage\nSableuse et équipement de peinture\nÉquipements de levage et de manutention\nÉchafaudages et équipements de travail en hauteur\nOutillage de tuyauterie et de montage",
+        ],
+        'secteurs' => [
+            'titre' => 'Secteurs servis',
+            'texte' => "Nous intervenons sur les installations et les chantiers de ces secteurs, en respectant leurs règles d'accès et de sécurité.",
         ],
         'liees' => 'Réalisations en services industriels',
     ],

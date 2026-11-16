@@ -18,8 +18,8 @@ return [
         'telephone'        => '07 47 31 41 39',   // affiché
         'telephone_intl'   => '+2250747314139',   // lien tel:
         'whatsapp'         => '2250747314139',    // numéro wa.me, sans + ni espaces
-        'email'            => 'letsmanu@gmail.com',
-        'email_devis'      => 'letsmanu@gmail.com', // reçoit les demandes de devis
+        'email'            => 'letsmanou@gmail.com',
+        'email_devis'      => 'letsmanou@gmail.com', // reçoit les demandes de devis
         'email_expediteur' => '',                   // ex. no-reply@letsmanu.ci (vide = automatique)
 
         // Adresse (repère) et carte
@@ -63,6 +63,7 @@ return [
         'mines'           => 'pioche',
         'petrole-gaz'     => 'goutte',
         'energie'         => 'eclair',
+        'electricite'     => 'prise',
         'cimenterie'      => 'silo',
         'agroalimentaire' => 'feuille',
         'industrie'       => 'usine',

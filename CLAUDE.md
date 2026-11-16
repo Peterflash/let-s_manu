@@ -20,7 +20,7 @@ Site vitrine B2B de LET'S MANU SERVICES (SARL, Abidjan, créée en 2022) : servi
 | Gérante | MELEDJE ADJIBA MARIE ANGE LAETHITHIA |
 | Siège | Abidjan, Koumassi SICOGI, non loin du Groupe scolaire Collectif 1-2-3-4, villa 625 |
 | Téléphone / WhatsApp | 07 47 31 41 39 (+225) |
-| E-mail | letsmanu@gmail.com (à remplacer par contact@letsmanu.ci / devis@letsmanu.ci) |
+| E-mail | letsmanou@gmail.com (à remplacer par contact@letsmanu.ci / devis@letsmanu.ci) |
 | Domaine visé | letsmanu.ci (+ letsmanu.com en redirection), hébergement Hostinger mutualisé |
 
 Ces valeurs par défaut sont dans `app/config.php` et modifiables dans l'admin (Paramètres).

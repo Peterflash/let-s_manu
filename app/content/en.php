@@ -98,6 +98,7 @@ return [
         'mines'           => 'Mining',
         'petrole-gaz'     => 'Oil and gas',
         'energie'         => 'Energy',
+        'electricite'     => 'Electricity',
         'cimenterie'      => 'Cement',
         'agroalimentaire' => 'Food processing',
         'industrie'       => 'Manufacturing',
@@ -119,7 +120,7 @@ return [
             'titre' => 'The company at a glance',
             'a' => ['valeur' => '2022', 'libelle' => 'Founded in Abidjan'],
             'b' => ['valeur' => '2', 'libelle' => 'Divisions: industrial services and steel construction'],
-            'c' => ['valeur' => '7', 'libelle' => 'Sectors served'],
+            'c' => ['valeur' => '8', 'libelle' => 'Sectors served'],
             'd' => ['valeur' => '24 h', 'libelle' => 'Emergency response time in Abidjan'],
         ],
         'poles' => [
@@ -211,6 +212,10 @@ return [
             'titre' => 'Equipment and resources',
             'texte' => 'Our crews travel with their own equipment and work independently on your site.',
             'liste' => "Welding sets and generators\nOxy-fuel cutting and grinding equipment\nBlasting unit and painting equipment\nLifting and handling equipment\nScaffolding and work-at-height equipment\nPiping and erection tools",
+        ],
+        'secteurs' => [
+            'titre' => 'Sectors served',
+            'texte' => 'We work on plants and sites in these sectors, following their access and safety rules.',
         ],
         'liees' => 'Industrial services projects',
     ],

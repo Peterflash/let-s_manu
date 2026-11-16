@@ -32,6 +32,7 @@ function icon(string $nom, string $classe = ''): string
         'pioche'    => '<path d="M9 3.5c5 0 10.5 4.5 11.5 11.5"/><path d="M16.4 7.6 4 20"/>',
         'goutte'    => '<path d="m12 2.69 5.66 5.66a8 8 0 1 1-11.31 0z"/>',
         'eclair'    => '<path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/>',
+        'prise'     => '<path d="M9 2v5M15 2v5M6 7h12v4a6 6 0 0 1-12 0zM12 17v5"/>',
         'silo'      => '<path d="M7 21V8a5 5 0 0 1 10 0v13M4 21h16M7 12h10M7 16.5h10"/>',
         'feuille'   => '<path d="M12 21V11"/><path d="M12 13c0-4 3-7 8-7 0 5-3 8-8 7z"/><path d="M12 16c0-3-2.5-5.5-7-5.5 0 4 3 6.500 7 5.5z"/>',
         'usine'     => '<path d="M3 21V10l6 4v-4l6 4V4h5v17zM2 21h20"/>',
