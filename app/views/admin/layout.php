@@ -1,6 +1,6 @@
 <?php
 /** Gabarit de l'espace d'administration. Variables : $section, $contenu. */
-$connecte = !empty($_SESSION['admin']);
+$connecte = !empty($_SESSION['admin']) && $section !== 'acces'; // pas de menu sur les pages de connexion et de création du compte
 $menu = [
     'accueil'      => ['Tableau de bord', ''],
     'demandes'     => ['Demandes de devis', 'demandes'],

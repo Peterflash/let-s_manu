@@ -15,6 +15,28 @@ function admin_url(string $chemin = ''): string
     return BASE . '/admin' . ($chemin !== '' ? '/' . $chemin : '');
 }
 
+/**
+ * Empreinte du compte, gardée en session : elle change si le compte est recréé (mot de passe perdu)
+ * ou si son mot de passe est modifié. Les sessions ouvertes avant, sur un autre appareil, sont alors refusées.
+ */
+function admin_empreinte(array $compte): string
+{
+    return hash('sha256', ($compte['identifiant'] ?? '') . '|' . ($compte['hash'] ?? ''));
+}
+
+function admin_ouvrir_session(array $compte): void
+{
+    session_regenerate_id(true);
+    $_SESSION['admin'] = $compte['identifiant'];
+    $_SESSION['admin_empreinte'] = admin_empreinte($compte);
+    $_SESSION['admin_vu'] = time();
+}
+
+function admin_fermer_session(): void
+{
+    unset($_SESSION['admin'], $_SESSION['admin_empreinte'], $_SESSION['admin_vu']);
+}
+
 /** Limite du serveur en clair : « 96M » devient « 96 Mo ». */
 function admin_limite(string $directive): string
 {
@@ -38,6 +60,7 @@ function admin_dispatch(string $chemin): void
 
     // Première utilisation : création du compte (une seule fois)
     if (!is_file(store_path('admin'))) {
+        admin_fermer_session(); // une session d'un compte supprimé ne vaut plus rien
         if ($action !== 'installation') {
             redirect(admin_url('installation'));
         }
@@ -52,9 +75,11 @@ function admin_dispatch(string $chemin): void
         return;
     }
 
-    // Tout le reste exige d'être connecté
-    if (empty($_SESSION['admin']) || time() - (int) ($_SESSION['admin_vu'] ?? 0) > ADMIN_INACTIVITE) {
-        unset($_SESSION['admin']);
+    // Tout le reste exige d'être connecté, avec une session ouverte sur le compte actuel
+    if (empty($_SESSION['admin'])
+        || !hash_equals(admin_empreinte(store_read('admin')), (string) ($_SESSION['admin_empreinte'] ?? ''))
+        || time() - (int) ($_SESSION['admin_vu'] ?? 0) > ADMIN_INACTIVITE) {
+        admin_fermer_session();
         redirect(admin_url('connexion'));
     }
     $_SESSION['admin_vu'] = time();
@@ -104,10 +129,9 @@ function admin_installation(bool $post): void
         } elseif ($motDePasse !== (string) ($_POST['confirmation'] ?? '')) {
             $erreur = 'Les deux mots de passe ne sont pas identiques.';
         } else {
-            store_write('admin', ['identifiant' => $identifiant, 'hash' => password_hash($motDePasse, PASSWORD_DEFAULT), 'cree' => date('c')]);
-            session_regenerate_id(true);
-            $_SESSION['admin'] = $identifiant;
-            $_SESSION['admin_vu'] = time();
+            $compte = ['identifiant' => $identifiant, 'hash' => password_hash($motDePasse, PASSWORD_DEFAULT), 'cree' => date('c')];
+            store_write('admin', $compte);
+            admin_ouvrir_session($compte);
             flash('succes', "Compte créé. Bienvenue dans l'administration du site.");
             redirect(admin_url());
         }
@@ -128,9 +152,7 @@ function admin_connexion(bool $post): void
             $erreur = 'Trop de tentatives. Réessayez dans un quart d\'heure.';
         } elseif (hash_equals((string) ($compte['identifiant'] ?? ''), trim((string) ($_POST['identifiant'] ?? '')))
             && password_verify((string) ($_POST['mot_de_passe'] ?? ''), (string) ($compte['hash'] ?? ''))) {
-            session_regenerate_id(true);
-            $_SESSION['admin'] = $compte['identifiant'];
-            $_SESSION['admin_vu'] = time();
+            admin_ouvrir_session($compte);
             redirect(admin_url());
         } else {
             store_update('connexions', function (array $tous) use ($ip, $essais) {
@@ -472,7 +494,8 @@ function admin_parametres(bool $post): void
             } else {
                 $compte['hash'] = password_hash($nouveau, PASSWORD_DEFAULT);
                 store_write('admin', $compte);
-                flash('succes', 'Mot de passe modifié.');
+                $_SESSION['admin_empreinte'] = admin_empreinte($compte); // cet appareil reste connecté, les autres non
+                flash('succes', "Mot de passe modifié. Les autres appareils connectés à l'administration sont déconnectés.");
             }
         } elseif ($operation === 'plaquette') {
             $suffixe = ($_POST['langue'] ?? '') === 'en' ? '-en' : '';
